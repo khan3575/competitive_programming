@@ -1,2 +1,7 @@
 *.in
 *.exe
+*.o
+# Ignore compiled executables (files without extension)
+*
+!*/
+!*.*
