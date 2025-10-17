@@ -1,10 +1,14 @@
-
-inputf.in
-outputf.in
-*.in
-*.exe
-*.o
-# Ignore compiled executables (files without extension)
+# Ignore compiled executables first
 *
 !*/
-!*.*
+
+# Then allow specific extensions
+!*.cpp
+!*.c
+!*.md
+!.gitignore
+
+# Explicitly ignore these
+*.exe
+*.o
+*.in
