@@ -1,8 +1,9 @@
+
+inputf.in
+outputf.in
 *.in
 *.exe
 *.o
-inputf.in
-outputf.in
 # Ignore compiled executables (files without extension)
 *
 !*/
