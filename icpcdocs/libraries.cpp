@@ -332,4 +332,122 @@ void grid_dfs(int r, int c) {
 //     // Graph has a cycle, no valid topological sort
 // } else {
 //     // topo_order contains the valid sort
+// }#include<bits/stdc++.h>
+using namespace std;
+
+#define ll long long
+#define ld long double
+#define endl '\n';
+#define unsyncIO ios_base::sync_with_stdio(false); cin.tie(nullptr)
+const int MAX_N= 100005;
+vector<int>adj[N];
+vector<int>subtree[N];
+vector<int>height[N];
+int depth[N];
+
+
+pair<int,int> bfs(int u, int n)
+{
+    vector<int>dist(n+1, -1);
+    queue<int>q;
+    int farthest_node = u;
+    int max_dist = 0;
+    while(!q.empty())
+    {
+        int u = q.front();
+        q.pop();
+
+        for(int v : adj[u])
+        {
+            if(dist[v]==-1)
+            {
+                dist[v] = dist[u] +1;
+                q.push(v);
+                if(dist[v]> max_dist)
+                {
+                    max_dist= dist[v];
+                    farthest_node = v;
+                }
+            }
+        }
+    }
+
+    return {max_dist, farthest_node};
+}
+
+
+// int dfs_height(int u , int p)
+// {
+//  height[u] = 0;
+//  int temp = 0;
+//  for(auto v : adj[u])
+//  {
+//      if(v==p)
+//      {
+//          continue;
+//      }
+//      temp = max(temp, 1+ dfs(v,u) );
+//  }
+//  return height[u]=temp;
 // }
+
+// int dfs_subtree(int node , int parent)
+// {
+//  int subtree[node]=1;
+//  for(int child: adj[node])
+//  {
+//      if(child==parent)
+//      {
+//          continue;
+//      }
+//      subtree[node]+= dfs_subtree(child,node);
+//  }
+//  return subtree[node];
+// }
+
+
+// void dfs(int node, int parent, int d)
+// {
+//  depth[node] = d;
+//  for(auto child : adj[node])
+//  {
+//      if(child==parent)
+//      {
+//          continue;
+//      }
+//      dfs(child,node,d+1);
+
+//  }
+// }
+
+void solve()
+{
+    int n, m;
+    cin >> n >> m;
+    for(int  i = 0; i< n; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+    pair<int,int> result1 = bfs(1,n);
+    int nodeA = result1.second;
+
+    pair<int,int> result2 = bfs(nodeA,n);
+
+    int diameter = result2.first;
+    cout<< diameter<<endl;
+}
+
+
+int main()
+{
+    
+    unsyncIO;
+    int t=1;
+    //cin >> t; 
+    while(t--){
+        solve();
+    }
+}
